@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
-import Jaxb.Current;
+
 import Model.Città;
 import Model.Gestione;
 import View.Finestra;
@@ -45,9 +45,9 @@ public class Controller implements ActionListener{
 						xmlFile = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + f.getComboBox().getSelectedItem().toString() + "&mode=xml&appid=bcd53aa523a9a8fb0d93116f52dddc98");
 						c= new Città(f.getComboBox().getSelectedItem().toString());
 					}
-					JAXBContext jaxbContext = JAXBContext.newInstance(Current.class);
+					/*JAXBContext jaxbContext = JAXBContext.newInstance(Current.class);
 					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-					Current current = (Current) jaxbUnmarshaller.unmarshal(xmlFile);
+					Current current = (Current) jaxbUnmarshaller.unmarshal(xmlFile);*/
 					
 					if (!f.getTextField().getText().isEmpty()) {
 						c= new Città(f.getTextField().getText());
@@ -55,8 +55,6 @@ public class Controller implements ActionListener{
 						g.inserisci(c);
 						g.aggiornaCombobox();
 					}
-					
-					aggiornaGrafica(current);
 					
 					f2.setVisible(true);
 					f.setVisible(false);
