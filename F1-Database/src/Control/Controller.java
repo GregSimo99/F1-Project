@@ -51,8 +51,7 @@ public class Controller implements ActionListener{
 					
 					if (!f.getTextField().getText().isEmpty()) {
 						c= new Città(f.getTextField().getText());
-						g.apertura();
-						g.inserisci(c);
+					
 						g.aggiornaCombobox();
 					}
 					

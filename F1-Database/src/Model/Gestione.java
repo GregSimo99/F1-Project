@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JComboBox;
 
-import Control.AppendObjectOutputStream;
+import JAXB.ResultsListType;
 import View.Finestra;
 import View.Finestra2;
 
@@ -29,35 +29,9 @@ public class Gestione {
 		f= new File("Città.dat");
 	}
 	
-	public void apertura(){
-		if(f.exists()==false){
-			try {
-				fo=new FileOutputStream(f);
-				fout=new ObjectOutputStream(fo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else{
-			try {
-				fo=new FileOutputStream(f,true);
-				fout=new AppendObjectOutputStream(fo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public void inserisci(Città c){
-		try {
-			fout.writeObject(c);
-			fo.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void aggiornaCombobox(){
+		
 		if(f.exists()){
 			finestra.getComboBox().removeAllItems();
 			try{
