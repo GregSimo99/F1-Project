@@ -28,11 +28,6 @@ public class Finestra extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblMeteo = new JLabel("METEO");
-		lblMeteo.setFont(new Font("Segoe Print", Font.BOLD, 18));
-		lblMeteo.setBounds(101, 11, 116, 24);
-		contentPane.add(lblMeteo);
-		
 		JLabel lblCitta = new JLabel("Citt\u00E0");
 		lblCitta.setBounds(34, 63, 46, 14);
 		contentPane.add(lblCitta);

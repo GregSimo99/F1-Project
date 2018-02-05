@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JComboBox;
 
-import JAXB.ResultsListType;
 import View.Finestra;
 import View.Finestra2;
 
@@ -30,26 +29,5 @@ public class Gestione {
 	}
 	
 	
-	public void aggiornaCombobox(){
-		
-		if(f.exists()){
-			finestra.getComboBox().removeAllItems();
-			try{
-				fi=new FileInputStream(f);
-				fin= new ObjectInputStream(fi);
-				finestra.getComboBox().addItem("Selezionare città");
-				while(true){
-					try{
-						Città c=(Città)fin.readObject();
-						finestra.getComboBox().addItem(c);
-					} catch (Exception e){
-						break;
-					}
-				}
-				fi.close();
-			} catch (Exception e){
-				e.printStackTrace();
-			}
-		}
-	}
+	
 }
