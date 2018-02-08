@@ -1,6 +1,5 @@
 package Main;
 
-import Control.Controller;
 import Model.Gestione;
 import View.Finestra;
 import View.Finestra2;
