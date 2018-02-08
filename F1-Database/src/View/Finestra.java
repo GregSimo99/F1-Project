@@ -7,6 +7,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.Unmarshaller;
+
+import com.ergast.mrd._1.MRDataType;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -14,6 +20,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -26,6 +33,7 @@ import javax.swing.JComboBox;
 import javax.swing.Icon;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JCheckBox;
 
 public class Finestra extends JFrame {
 
@@ -36,10 +44,11 @@ public class Finestra extends JFrame {
 	private JLabel LogoUpper;
 	private JLabel LogoLeft;
 	private JLabel lblAnno;
-	private JComboBox<String> comboBox;
+	private JComboBox<String> comboAnno;
 	private Calendar now;
-	private JLabel label;
-	private JComboBox<String> comboBox_1;
+	private JLabel lblRound;
+	private JComboBox<String> comboRound;
+	private JCheckBox chkbxRound;
 
 	/* -------- FINESTRA DA UTLIZZARE PER LA RICERCA DEGLI STANDINGS  -------- */
 	
@@ -105,23 +114,45 @@ public class Finestra extends JFrame {
 		lblAnno.setBounds(72, 156, 178, 27);
 		contentPane.add(lblAnno);
 		
-		comboBox = new JComboBox<String>();
-		comboBox.setBounds(620, 156, 101, 27);
+		comboAnno = new JComboBox<String>();
+		comboAnno.setBounds(620, 156, 101, 27);
 		now = Calendar.getInstance();
 		for(int i=1950;i<now.get(Calendar.YEAR)+1;i++) {
-			comboBox.addItem(""+i);
+			comboAnno.addItem(""+i);
 		}
-		contentPane.add(comboBox);
+		contentPane.add(comboAnno);
 		
-		label = new JLabel("ANNO STAGIONE");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		label.setBounds(72, 213, 178, 27);
-		contentPane.add(label);
+		//trt
 		
-		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(620, 213, 101, 27);
-		contentPane.add(comboBox_1);
+		lblRound = new JLabel("ROUND");
+		lblRound.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRound.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		lblRound.setBounds(72, 213, 178, 27);
+		contentPane.add(lblRound);
+		
+		comboRound = new JComboBox<String>();
+		comboRound.setBounds(620, 213, 101, 27);
+		contentPane.add(comboRound);
+		
+		chkbxRound = new JCheckBox("Attiva");
+		chkbxRound.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		chkbxRound.setBackground(new Color(252,252,255));
+		chkbxRound.setBounds(267, 213, 97, 27);
+		try {
+			URL xmlFile;
+			xmlFile = new URL("https://ergast.com/api/f1/"+ Integer.parseInt((String)comboAnno.getSelectedItem()));
+			JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+			MRDataType rootDB = (MRDataType) rootElement.getValue();
+			System.out.println(rootDB.getRaceTable().getRound().intValue());
+			
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		contentPane.add(chkbxRound);
 		
 		
 		
