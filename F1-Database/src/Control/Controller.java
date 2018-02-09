@@ -23,33 +23,30 @@ public class Controller implements ActionListener{
 	private Finestra2 f2;
 	private Gestione g;
 
-	public Controller(Finestra f, Finestra2 f2, Gestione g) {
+	public Controller(Finestra f/*, Finestra2 f2, Gestione g*/) {
 		this.f = f;
 		this.f2=f2;
 		this.g=g;
-	
-		f.getBtnVai().addActionListener(this);
-		f2.getBtnAggiorna().addActionListener(this);
-		f2.getBtnCambiaCitt().addActionListener(this);
-		f2.getBtnOk().addActionListener(this);
+		f.getComboAnno().addActionListener(this);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent evt) {
-		if (evt.getSource()==f.getBtnVai()){
-				try {
-					URL xmlFile;
-					xmlFile = new URL("https://ergast.com/api/f1/2017/2/driverStandings");
-					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
-					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
-					MRDataType rootDB = (MRDataType) rootElement.getValue();
-					
-
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==f.getComboAnno()){
+			System.out.println("Flag");
+			try {
+				URL xmlFile;
+				xmlFile = new URL("https://ergast.com/api/f1/"+ Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/circuits");
+				JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+				MRDataType rootDB = (MRDataType) rootElement.getValue();
+				//System.out.println(rootDB.getTotal());
+				f.impostaComboRound(rootDB.getTotal().intValue());
+			
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		
 		

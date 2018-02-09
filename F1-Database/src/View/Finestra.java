@@ -63,7 +63,7 @@ public class Finestra extends JFrame {
 		contentPane.setLayout(null);
 		BufferedImage immagine;
 		
-		//---------
+		//---------IMMAGINI---------------
 		
 		try {
 			immagine = ImageIO.read(new File("src/immagini/F1Logo.jpg"));
@@ -75,7 +75,7 @@ public class Finestra extends JFrame {
 			e.printStackTrace();
 		}
 		
-		//--------
+		//--------IMMAGINI---------------
 		
 		LogoRight=new JLabel();
 		LogoRight.setText("F1 HISTORICAL DB");
@@ -122,7 +122,7 @@ public class Finestra extends JFrame {
 		}
 		contentPane.add(comboAnno);
 		
-		//trt
+		
 		
 		lblRound = new JLabel("ROUND");
 		lblRound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -138,20 +138,7 @@ public class Finestra extends JFrame {
 		chkbxRound.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		chkbxRound.setBackground(new Color(252,252,255));
 		chkbxRound.setBounds(267, 213, 97, 27);
-		try {
-			URL xmlFile;
-			xmlFile = new URL("https://ergast.com/api/f1/"+ Integer.parseInt((String)comboAnno.getSelectedItem()));
-			JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
-			MRDataType rootDB = (MRDataType) rootElement.getValue();
-			System.out.println(rootDB.getRaceTable().getRound().intValue());
-			
 
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		contentPane.add(chkbxRound);
 		
 		
@@ -163,11 +150,23 @@ public class Finestra extends JFrame {
 	}
 	
 	//255 22 25
-	
+	//MEDODI
 	public static void centreWindow(Finestra frame) {
 	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 	    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
 	    frame.setLocation(x, y);
+	}
+	
+	public void impostaComboRound(int r) {
+		comboRound.removeAll();
+		for (int i = 1; i <= r; i++) {
+			comboRound.addItem(""+i);
+		}
+	}
+	//GETTER AND SETTER
+	
+	public JComboBox<String> getComboAnno() {
+		return comboAnno;
 	}
 }
