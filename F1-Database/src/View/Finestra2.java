@@ -9,10 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Finestra2 extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	public Finestra2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,8 +25,20 @@ public class Finestra2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//uhtr
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 40, 661, 335);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Pos", "Pilota", "Costruttore", "Nazionalità", "Punti", "Vitorie"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 	}
-
 }

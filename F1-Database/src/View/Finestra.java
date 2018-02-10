@@ -49,6 +49,7 @@ public class Finestra extends JFrame {
 	private JLabel lblRound;
 	private JComboBox<String> comboRound;
 	private JCheckBox chkbxRound;
+	private JButton btnSubmit;
 
 	/* -------- FINESTRA DA UTLIZZARE PER LA RICERCA DEGLI STANDINGS  -------- */
 	
@@ -133,13 +134,18 @@ public class Finestra extends JFrame {
 		comboRound = new JComboBox<String>();
 		comboRound.setBounds(620, 213, 101, 27);
 		contentPane.add(comboRound);
+		comboRound.setVisible(false);
 		
 		chkbxRound = new JCheckBox("Attiva");
 		chkbxRound.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		chkbxRound.setBackground(new Color(252,252,255));
 		chkbxRound.setBounds(267, 213, 97, 27);
-
 		contentPane.add(chkbxRound);
+		
+		btnSubmit = new JButton("SUBMIT");
+		btnSubmit.setBounds(219, 325, 128, 41);
+		contentPane.add(btnSubmit);
+		chkbxRound.setVisible(false);
 		
 		
 		
@@ -150,7 +156,7 @@ public class Finestra extends JFrame {
 	}
 	
 	//255 22 25
-	//MEDODI
+	//METODI
 	public static void centreWindow(Finestra frame) {
 	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
@@ -169,4 +175,17 @@ public class Finestra extends JFrame {
 	public JComboBox<String> getComboAnno() {
 		return comboAnno;
 	}
+
+	public JCheckBox getChkbxRound() {
+		return chkbxRound;
+	}
+
+	public JComboBox<String> getComboRound() {
+		return comboRound;
+	}
+
+	public JButton getBtnSubmit() {
+		return btnSubmit;
+	}
+	
 }

@@ -10,7 +10,9 @@ public class Main {
 	public static void main(String[] args) {
 		Finestra f=new Finestra();
 		f.setVisible(true);
-		Controller c=new Controller(f);
+		Finestra2 f2=new Finestra2();
+		f2.setVisible(false);
+		Controller c=new Controller(f,f2);
 		
 	
 	}
