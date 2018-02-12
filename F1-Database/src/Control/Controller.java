@@ -80,6 +80,7 @@ public class Controller implements ActionListener,WindowListener{
 					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 					MRDataType rootDB = (MRDataType) rootElement.getValue();
 					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+					f2.impostaColonne();
 					f2.setVisible(true);
 				}
 				else {
@@ -90,6 +91,7 @@ public class Controller implements ActionListener,WindowListener{
 						JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 						MRDataType rootDB = (MRDataType) rootElement.getValue();
 						g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+						f2.impostaColonne();
 						f2.setVisible(true);
 					}
 					else {
