@@ -69,7 +69,6 @@ public class Gestione {
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 				JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 				MRDataType rootDBtemp = (MRDataType) rootElement.getValue();
-				System.out.println(rootDBtemp.getStandingsTable().getStandingsList().get(0).getDriverStanding().size());
 				for (int i =0; i <  temp-tot; i++) {
 					mod.addRow(new String[] {""+(i+31),
 							rootDBtemp.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(i).getDriver().getGivenName()

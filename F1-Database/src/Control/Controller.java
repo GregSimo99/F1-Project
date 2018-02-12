@@ -42,6 +42,8 @@ public class Controller implements ActionListener,WindowListener{
 			f.getErr1().setVisible(false);
 			f.getErr2().setVisible(false);
 			f.getErr3().setVisible(false);
+			f.getComboRound().removeAllItems();	
+			f.getComboRound().addItem("Seleziona");
 			try {
 				URL xmlFile;
 				xmlFile = new URL("https://ergast.com/api/f1/"+ Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/circuits");
@@ -58,9 +60,9 @@ public class Controller implements ActionListener,WindowListener{
 		if (e.getSource()==f.getChkbxRound()){
 			if(f.getChkbxRound().isSelected())
 				f.getComboRound().setVisible(true);
-			else
+			else 
 				f.getComboRound().setVisible(false);
-				f.getComboRound().removeAll();
+			
 		}
 		if(e.getSource()==f.getComboRound()) {
 			f.getErr1().setVisible(false);
@@ -73,24 +75,27 @@ public class Controller implements ActionListener,WindowListener{
 		if (e.getSource()==f.getBtnSubmit()){
 			try {
 				URL xmlFile;
-				if(f.getChkbxRound().isSelected()  && f.getComboAnno().getSelectedIndex()!=0 && f.getComboAnno().getSelectedIndex()!=0 &&  f.getComboRound().getSelectedIndex()!=0) { //Round attivi
+				if(f.getChkbxRound().isSelected()  && f.getComboAnno().getSelectedIndex()!=0 && f.getComboAnno().getSelectedIndex()!=0 &&  f.getComboRound().getSelectedIndex()!=0 && f.getConstructChkbox().isSelected()==false) { //Round attivi
 					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+f.getRound()+"/driverStandings");
 					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
 					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 					MRDataType rootDB = (MRDataType) rootElement.getValue();
+					f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
+					f2.getLblRoundCfr().setText((String)f.getComboRound().getSelectedItem());
 					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
 					f2.impostaColonne();
 					f2.setVisible(true);
 				}
 				else {
-					if(f.getChkbxRound().isSelected()==false  && f.getComboAnno().getSelectedIndex()!=0) { // Round non attivi, costruttori non attivi
+					if(f.getChkbxRound().isSelected()==false  && f.getComboAnno().getSelectedIndex()!=0 && f.getConstructChkbox().isSelected()==false) { // Round non attivi, costruttori non attivi
 						xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/driverStandings");
 						JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
 						Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 						JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 						MRDataType rootDB = (MRDataType) rootElement.getValue();
-						g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+						f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
+						g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());						
 						f2.impostaColonne();
 						f2.setVisible(true);
 					}
@@ -101,6 +106,7 @@ public class Controller implements ActionListener,WindowListener{
 							Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 							JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 							MRDataType rootDB = (MRDataType) rootElement.getValue();
+							f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
 							g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
 							f2.setVisible(true);
 						}
@@ -112,6 +118,8 @@ public class Controller implements ActionListener,WindowListener{
 								Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 								JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 								MRDataType rootDB = (MRDataType) rootElement.getValue();
+								f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
+								f2.getLblRoundCfr().setText((String)f.getComboRound().getSelectedItem());
 								g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
 								f2.setVisible(true);
 							}

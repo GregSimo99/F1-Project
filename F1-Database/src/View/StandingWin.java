@@ -216,7 +216,8 @@ public class StandingWin extends JFrame {
 	}
 	
 	public void impostaComboRound(int r) {
-		comboRound.removeAll();
+		comboRound.removeAllItems();
+		this.getComboRound().addItem("Seleziona");
 		for (int i = 1; i <= r; i++) {
 			comboRound.addItem(""+i);
 		}
@@ -224,7 +225,7 @@ public class StandingWin extends JFrame {
 	
 	public String getRound() {
 		String s="";
-		s="/"+(comboRound.getSelectedIndex()+1);
+		s="/"+(comboRound.getSelectedIndex());
 		return s;
 	}
 	//GETTER AND SETTER

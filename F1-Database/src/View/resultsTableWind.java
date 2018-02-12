@@ -15,13 +15,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 public class resultsTableWind extends JFrame {
 
@@ -35,7 +32,10 @@ public class resultsTableWind extends JFrame {
 	private JLabel LogoUnder;
 	private JLabel LogoUpper;
 	private JLabel LogoLeft;
-	private JLabel lblAnno;
+	private JLabel lblSeason;
+	private JLabel lblRound;
+	private JLabel lblSeasonCfr;
+	private JLabel lblRoundCfr;
 
 	public resultsTableWind() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -47,30 +47,14 @@ public class resultsTableWind extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(61, 119, 661, 335);
+		scrollPane.setBounds(61, 194, 661, 335);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		modDrivers=new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-					"Pos", "Pilota", "Costruttore", "Nazionalità", "Punti", "Vitorie"
-				}
-			);
-		modConstr=new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-					"Pos", "Costruttore", "Nazionalità", "Punti", "Vitorie"
-				}
-			);
-		table.setModel(modDrivers);
+		scrollPane.setBackground(new Color(252,252,255));
+		table.setBackground(new Color(252,252,255));
 		scrollPane.setViewportView(table);	
-		
-		
-		
-		
+
 		BufferedImage immagine;
 		
 		//---------IMMAGINI---------------
@@ -118,11 +102,37 @@ public class resultsTableWind extends JFrame {
 		LogoLeft.setBounds(0, 11, 19, 53);
 		contentPane.add(LogoLeft);
 		
-		lblAnno = new JLabel("ANNO STAGIONE");
-		lblAnno.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAnno.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblAnno.setBounds(72, 156, 178, 27);
-		contentPane.add(lblAnno);
+		lblSeason = new JLabel("ANNO STAGIONE");
+		lblSeason.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeason.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		lblSeason.setBounds(61, 127, 178, 27);
+		contentPane.add(lblSeason);
+		
+		lblRound = new JLabel("ROUND");
+		lblRound.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRound.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		lblRound.setBounds(497, 127, 178, 27);
+		contentPane.add(lblRound);
+		
+		lblSeasonCfr = new JLabel("");
+		lblSeasonCfr.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeasonCfr.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		lblSeasonCfr.setBounds(249, 127, 75, 27);
+		contentPane.add(lblSeasonCfr);
+		
+		lblRoundCfr = new JLabel("");
+		lblRoundCfr.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblRoundCfr.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		lblRoundCfr.setBounds(647, 127, 75, 27);
+		contentPane.add(lblRoundCfr);
+	}
+
+	public JLabel getLblSeasonCfr() {
+		return lblSeasonCfr;
+	}
+
+	public JLabel getLblRoundCfr() {
+		return lblRoundCfr;
 	}
 
 	public JTable getTable() {
