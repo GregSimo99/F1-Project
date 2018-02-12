@@ -69,7 +69,6 @@ public class Gestione {
 						});
 			}
 			}catch (Exception e) {
-				e.printStackTrace();
 			}
 	
 		}

@@ -61,15 +61,28 @@ public class Controller implements ActionListener,WindowListener{
 				URL xmlFile;
 				/*System.out.println("Valore round: "+f.getComboRound().getSelectedIndex());
 				System.out.println("Funzione: "+f.getRound());*/
-				xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+
-						f.getRound()+"/driverStandings");
-				JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
-				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-				JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
-				MRDataType rootDB = (MRDataType) rootElement.getValue();
-				//System.out.println(rootDB.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(1).getConstructor().get(0).getName());
-				g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
-				f2.setVisible(true);
+				System.out.println(f.getRound());
+				if(f.getChkbxRound().isSelected()) {
+					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+
+							f.getRound()+"/driverStandings");
+					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+					MRDataType rootDB = (MRDataType) rootElement.getValue();
+					//System.out.println(rootDB.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(1).getConstructor().get(0).getName());
+					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+					f2.setVisible(true);
+				}
+				else {
+					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/driverStandings");
+					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+					MRDataType rootDB = (MRDataType) rootElement.getValue();
+					//System.out.println(rootDB.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(1).getConstructor().get(0).getName());
+					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+					f2.setVisible(true);
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}

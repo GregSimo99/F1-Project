@@ -173,8 +173,7 @@ public class Finestra extends JFrame {
 	
 	public String getRound() {
 		String s="";
-		if(comboRound.getSelectedIndex()!=0)
-			s="/"+(comboRound.getSelectedIndex()+1);
+		s="/"+(comboRound.getSelectedIndex()+1);
 		return s;
 	}
 	//GETTER AND SETTER
