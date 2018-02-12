@@ -18,26 +18,30 @@ import com.ergast.mrd._1.*;
 import Model.*;
 import Model.Gestione;
 import View.StandingWin;
-import View.Finestra2;
+import View.resultsTableWind;
 
 public class Controller implements ActionListener,WindowListener{
 	private StandingWin f;
-	private Finestra2 f2;
+	private resultsTableWind f2;
 	private Gestione g;
 
-	public Controller(StandingWin f, Finestra2 f2, Gestione g) {
+	public Controller(StandingWin f, resultsTableWind f2, Gestione g) {
 		this.f = f;
 		this.f2=f2;
 		this.g=g;
 		f.getComboAnno().addActionListener(this);
 		f.getChkbxRound().addActionListener(this);
 		f.getBtnSubmit().addActionListener(this);
+		f.getComboRound().addActionListener(this);
 		f2.addWindowListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()==f.getComboAnno()){
+		if (e.getSource()==f.getComboAnno() && f.getComboAnno().getSelectedIndex()!=0){
+			f.getErr1().setVisible(false);
+			f.getErr2().setVisible(false);
+			f.getErr3().setVisible(false);
 			try {
 				URL xmlFile;
 				xmlFile = new URL("https://ergast.com/api/f1/"+ Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/circuits");
@@ -58,6 +62,13 @@ public class Controller implements ActionListener,WindowListener{
 				f.getComboRound().setVisible(false);
 				f.getComboRound().removeAll();
 		}
+		if(e.getSource()==f.getComboRound()) {
+			f.getErr1().setVisible(false);
+			f.getErr2().setVisible(false);
+			f.getErr3().setVisible(false);
+		}
+			
+			
 		//PULSANTE SUBMIT
 		if (e.getSource()==f.getBtnSubmit()){
 			try {
@@ -102,15 +113,17 @@ public class Controller implements ActionListener,WindowListener{
 								g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
 								f2.setVisible(true);
 							}
+							else {
+								f.getErr1().setVisible(true);
+								f.getErr2().setVisible(true);
+								f.getErr3().setVisible(true);
+							}
 						}
 					}
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}
-		else {
-			// Inserire messaggio di errore simpatico xdxd11
 		}
 		
 	}

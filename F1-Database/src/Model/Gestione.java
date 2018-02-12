@@ -17,12 +17,12 @@ import javax.xml.bind.Unmarshaller;
 import com.ergast.mrd._1.MRDataType;
 
 import View.StandingWin;
-import View.Finestra2;
+import View.resultsTableWind;
 
 public class Gestione {
-	private Finestra2 f;
+	private resultsTableWind f;
 
-	public Gestione(Finestra2 f) {
+	public Gestione(resultsTableWind f) {
 		this.f = f;
 	}
 	

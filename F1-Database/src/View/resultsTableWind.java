@@ -11,15 +11,17 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
-public class Finestra2 extends JFrame {
+public class resultsTableWind extends JFrame {
 
 	private DefaultTableModel mod;
 	private JPanel contentPane;
 	private JTable table;
 
-	public Finestra2() {
+	public resultsTableWind() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 697, 484);
 		contentPane = new JPanel();
@@ -40,8 +42,8 @@ public class Finestra2 extends JFrame {
 				}
 			);
 		table.setModel(mod);
-		scrollPane.setViewportView(table);
 		
+		scrollPane.setViewportView(table);	
 	}
 
 	public JTable getTable() {

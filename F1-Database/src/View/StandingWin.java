@@ -51,6 +51,9 @@ public class StandingWin extends JFrame {
 	private JCheckBox chkbxRound;
 	private JButton btnSubmit;
 	private JCheckBox constructChkbox;
+	private JLabel Err1;
+	private JLabel Err2;
+	private JLabel Err3;
 
 	/* -------- FINESTRA DA UTLIZZARE PER LA RICERCA DEGLI STANDINGS  -------- */
 	
@@ -146,7 +149,7 @@ public class StandingWin extends JFrame {
 		contentPane.add(chkbxRound);
 		
 		btnSubmit = new JButton("SUBMIT");
-		btnSubmit.setBounds(333, 325, 128, 41);
+		btnSubmit.setBounds(333, 291, 128, 41);
 		contentPane.add(btnSubmit);
 		
 		constructChkbox = new JCheckBox("Costruttori");
@@ -154,6 +157,30 @@ public class StandingWin extends JFrame {
 		constructChkbox.setBounds(376, 213, 121, 27);
 		constructChkbox.setBackground(new Color(252,252,255));
 		contentPane.add(constructChkbox);
+		
+		Err1 = new JLabel("ATTENZIONE! ");
+		Err1.setForeground(new Color(255, 69, 0));
+		Err1.setHorizontalAlignment(SwingConstants.CENTER);
+		Err1.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		Err1.setBounds(72, 404, 649, 27);
+		Err1.setVisible(false);
+		contentPane.add(Err1);
+		
+		Err2 = new JLabel("I CAMPI SELEZIONATI NON SONO SUFFICIENTI");
+		Err2.setHorizontalAlignment(SwingConstants.CENTER);
+		Err2.setForeground(new Color(255, 69, 0));
+		Err2.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		Err2.setBounds(72, 432, 649, 27);
+		Err2.setVisible(false);
+		contentPane.add(Err2);
+		
+		Err3 = new JLabel("VERIFICARE D AVER ISNERITO TUTTI I CAMPI ENCESSARI ALLA RICERCA");
+		Err3.setHorizontalAlignment(SwingConstants.CENTER);
+		Err3.setForeground(new Color(255, 69, 0));
+		Err3.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		Err3.setBounds(10, 459, 774, 27);
+		Err3.setVisible(false);
+		contentPane.add(Err3);
 	
 		
 		
@@ -163,6 +190,18 @@ public class StandingWin extends JFrame {
 		
 	}
 	
+	public JLabel getErr1() {
+		return Err1;
+	}
+
+	public JLabel getErr2() {
+		return Err2;
+	}
+
+	public JLabel getErr3() {
+		return Err3;
+	}
+
 	public JCheckBox getConstructChkbox() {
 		return constructChkbox;
 	}
