@@ -12,7 +12,7 @@ public class Main {
 		f.setVisible(true);
 		resultsTableWind f2=new resultsTableWind();
 		f2.setVisible(false);
-		Gestione g=new Gestione(f2);
+		Gestione g=new Gestione(f2,f);
 		Controller c=new Controller(f,f2,g);
 		
 	

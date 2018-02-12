@@ -174,7 +174,7 @@ public class StandingWin extends JFrame {
 		Err2.setVisible(false);
 		contentPane.add(Err2);
 		
-		Err3 = new JLabel("VERIFICARE D AVER ISNERITO TUTTI I CAMPI ENCESSARI ALLA RICERCA");
+		Err3 = new JLabel("VERIFICARE D'AVER INSERITO TUTTI I CAMPI NECESSARI ALLA RICERCA");
 		Err3.setHorizontalAlignment(SwingConstants.CENTER);
 		Err3.setForeground(new Color(255, 69, 0));
 		Err3.setFont(new Font("Century Gothic", Font.BOLD, 20));
