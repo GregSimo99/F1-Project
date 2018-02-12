@@ -170,6 +170,13 @@ public class Finestra extends JFrame {
 			comboRound.addItem(""+i);
 		}
 	}
+	
+	public String getRound() {
+		String s="";
+		if(comboRound.getSelectedIndex()!=0)
+			s="/"+(comboRound.getSelectedIndex()+1);
+		return s;
+	}
 	//GETTER AND SETTER
 	
 	public JComboBox<String> getComboAnno() {

@@ -12,7 +12,8 @@ public class Main {
 		f.setVisible(true);
 		Finestra2 f2=new Finestra2();
 		f2.setVisible(false);
-		Controller c=new Controller(f,f2);
+		Gestione g=new Gestione(f2);
+		Controller c=new Controller(f,f2,g);
 		
 	
 	}

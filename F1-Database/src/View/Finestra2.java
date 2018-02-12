@@ -15,11 +15,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class Finestra2 extends JFrame {
 
+	private DefaultTableModel mod;
 	private JPanel contentPane;
 	private JTable table;
 
 	public Finestra2() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 697, 484);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -31,14 +32,21 @@ public class Finestra2 extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Pos", "Pilota", "Costruttore", "Nazionalità", "Punti", "Vitorie"
-			}
-		));
+		mod=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Pos", "Pilota", "Costruttore", "Nazionalità", "Punti", "Vitorie"
+				}
+			);
+		table.setModel(mod);
 		scrollPane.setViewportView(table);
 		
 	}
+
+	public JTable getTable() {
+		return table;
+	}
+	
+	
 }
