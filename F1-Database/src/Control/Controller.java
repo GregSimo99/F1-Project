@@ -17,15 +17,15 @@ import com.ergast.mrd._1.*;
 
 import Model.*;
 import Model.Gestione;
-import View.Finestra;
+import View.StandingWin;
 import View.Finestra2;
 
 public class Controller implements ActionListener,WindowListener{
-	private Finestra f;
+	private StandingWin f;
 	private Finestra2 f2;
 	private Gestione g;
 
-	public Controller(Finestra f, Finestra2 f2, Gestione g) {
+	public Controller(StandingWin f, Finestra2 f2, Gestione g) {
 		this.f = f;
 		this.f2=f2;
 		this.g=g;
@@ -52,47 +52,72 @@ public class Controller implements ActionListener,WindowListener{
 			}
 		}
 		if (e.getSource()==f.getChkbxRound()){
-			f.getComboRound().setVisible(true);
+			if(f.getChkbxRound().isSelected())
+				f.getComboRound().setVisible(true);
+			else
+				f.getComboRound().setVisible(false);
+				f.getComboRound().removeAll();
 		}
 		//PULSANTE SUBMIT
 		if (e.getSource()==f.getBtnSubmit()){
-			//prova
 			try {
 				URL xmlFile;
-				/*System.out.println("Valore round: "+f.getComboRound().getSelectedIndex());
-				System.out.println("Funzione: "+f.getRound());*/
-				System.out.println(f.getRound());
-				if(f.getChkbxRound().isSelected()) {
-					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+
-							f.getRound()+"/driverStandings");
+				if(f.getChkbxRound().isSelected()  && f.getComboAnno().getSelectedIndex()!=0 && f.getComboAnno().getSelectedIndex()!=0 &&  f.getComboRound().getSelectedIndex()!=0) { //Round attivi
+					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+f.getRound()+"/driverStandings");
 					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
 					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
 					MRDataType rootDB = (MRDataType) rootElement.getValue();
-					//System.out.println(rootDB.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(1).getConstructor().get(0).getName());
 					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
 					f2.setVisible(true);
 				}
 				else {
-					xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/driverStandings");
-					JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
-					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-					JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
-					MRDataType rootDB = (MRDataType) rootElement.getValue();
-					//System.out.println(rootDB.getStandingsTable().getStandingsList().get(0).getDriverStanding().get(1).getConstructor().get(0).getName());
-					g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
-					f2.setVisible(true);
+					if(f.getChkbxRound().isSelected()==false  && f.getComboAnno().getSelectedIndex()!=0) { // Round non attivi, costruttori non attivi
+						xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/driverStandings");
+						JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+						Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+						JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+						MRDataType rootDB = (MRDataType) rootElement.getValue();
+						g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+						f2.setVisible(true);
+					}
+					else {
+						if(f.getChkbxRound().isSelected()==false && f.getConstructChkbox().isSelected() && f.getComboAnno().getSelectedIndex()!=0) {  //Round non attivi, costruttori attivi
+							xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+"/constructorStandings");
+							JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+							Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+							JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+							MRDataType rootDB = (MRDataType) rootElement.getValue();
+							g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+							f2.setVisible(true);
+						}
+						else { 
+							if(f.getComboAnno().getSelectedIndex()!=0 &&  f.getComboRound().getSelectedIndex()!=0) {
+								xmlFile = new URL("https://ergast.com/api/f1/"+Integer.parseInt((String)f.getComboAnno().getSelectedItem())+
+										f.getRound()+"/constructorStandings"); //Round attivi, costruttori attivi
+								JAXBContext jaxbContext = JAXBContext.newInstance(MRDataType.class);
+								Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+								JAXBElement rootElement = (JAXBElement) jaxbUnmarshaller.unmarshal(xmlFile);
+								MRDataType rootDB = (MRDataType) rootElement.getValue();
+								g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+								f2.setVisible(true);
+							}
+						}
+					}
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
+		}
+		else {
+			// Inserire messaggio di errore simpatico xdxd11
 		}
 		
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

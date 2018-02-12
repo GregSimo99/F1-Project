@@ -35,7 +35,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 
-public class Finestra extends JFrame {
+public class StandingWin extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel LogoLabel;
@@ -50,11 +50,12 @@ public class Finestra extends JFrame {
 	private JComboBox<String> comboRound;
 	private JCheckBox chkbxRound;
 	private JButton btnSubmit;
+	private JCheckBox constructChkbox;
 
 	/* -------- FINESTRA DA UTLIZZARE PER LA RICERCA DEGLI STANDINGS  -------- */
 	
 	
-	public Finestra() {
+	public StandingWin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -118,6 +119,7 @@ public class Finestra extends JFrame {
 		comboAnno = new JComboBox<String>();
 		comboAnno.setBounds(620, 156, 101, 27);
 		now = Calendar.getInstance();
+		comboAnno.addItem("Seleziona");
 		for(int i=1950;i<now.get(Calendar.YEAR)+1;i++) {
 			comboAnno.addItem(""+i);
 		}
@@ -133,6 +135,7 @@ public class Finestra extends JFrame {
 		
 		comboRound = new JComboBox<String>();
 		comboRound.setBounds(620, 213, 101, 27);
+		comboRound.addItem("Seleziona");
 		contentPane.add(comboRound);
 		comboRound.setVisible(false);
 		
@@ -143,10 +146,15 @@ public class Finestra extends JFrame {
 		contentPane.add(chkbxRound);
 		
 		btnSubmit = new JButton("SUBMIT");
-		btnSubmit.setBounds(219, 325, 128, 41);
+		btnSubmit.setBounds(333, 325, 128, 41);
 		contentPane.add(btnSubmit);
-		chkbxRound.setVisible(false);
 		
+		constructChkbox = new JCheckBox("Costruttori");
+		constructChkbox.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		constructChkbox.setBounds(376, 213, 121, 27);
+		constructChkbox.setBackground(new Color(252,252,255));
+		contentPane.add(constructChkbox);
+	
 		
 		
 		centreWindow(this);
@@ -155,9 +163,13 @@ public class Finestra extends JFrame {
 		
 	}
 	
+	public JCheckBox getConstructChkbox() {
+		return constructChkbox;
+	}
+
 	//255 22 25
 	//METODI
-	public static void centreWindow(Finestra frame) {
+	public static void centreWindow(StandingWin frame) {
 	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 	    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -193,5 +205,4 @@ public class Finestra extends JFrame {
 	public JButton getBtnSubmit() {
 		return btnSubmit;
 	}
-	
 }

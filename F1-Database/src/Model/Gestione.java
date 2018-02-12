@@ -16,7 +16,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.ergast.mrd._1.MRDataType;
 
-import View.Finestra;
+import View.StandingWin;
 import View.Finestra2;
 
 public class Gestione {
