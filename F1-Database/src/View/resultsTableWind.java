@@ -148,5 +148,12 @@ public class resultsTableWind extends JFrame {
 		table.getColumnModel().getColumn(4).setPreferredWidth(90);
 		table.getColumnModel().getColumn(5).setPreferredWidth(90);
 	}
-	
+	public void impostaColonneCostr() {
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.getColumnModel().getColumn(0).setPreferredWidth(31);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(3).setPreferredWidth(140);
+		table.getColumnModel().getColumn(4).setPreferredWidth(140);
+	}
 }

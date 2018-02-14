@@ -108,6 +108,7 @@ public class Controller implements ActionListener,WindowListener{
 							MRDataType rootDB = (MRDataType) rootElement.getValue();
 							f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
 							g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+							f2.impostaColonneCostr();
 							f2.setVisible(true);
 						}
 						else { 
@@ -121,6 +122,7 @@ public class Controller implements ActionListener,WindowListener{
 								f2.getLblSeasonCfr().setText((String)f.getComboAnno().getSelectedItem());
 								f2.getLblRoundCfr().setText((String)f.getComboRound().getSelectedItem());
 								g.stampaTabella(rootDB,Integer.parseInt((String)f.getComboAnno().getSelectedItem()),f.getRound());
+								f2.impostaColonneCostr();
 								f2.setVisible(true);
 							}
 							else {
